@@ -1,0 +1,8 @@
+<!DOCTYPE tweet [
+    <!ELEMENT tweet (text,date,time)>
+    <!ATTLIST tweet id ID>
+    <!ELEMENT text (#PCDATA)>
+    <!ELEMENT date (#PCDATA)>
+    <!ELEMENT time (#PCDATA)>
+    <!ELEMENT body (#PCDATA)>
+]>

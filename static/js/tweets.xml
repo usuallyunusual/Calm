@@ -1,0 +1,34 @@
+<?xml version = '1.0' encoding = 'utf-8' ?>
+<!DOCTYPE tweets SYSTEM "tweets.dtd">
+<tweets>
+    <tweet id="1" report = "False">
+        <text>Truly a wonderful experience with Calm</text>
+        <date>12-06-2020</date>
+        <time>11:30</time>
+    </tweet>
+    <tweet id = "2" report = "False">
+        <text>Calm offers a wide range of services and it has helped my family develop more awareness</text>
+        <date>12-06-2020</date>
+        <time>12:30</time>
+    </tweet>
+    <tweet id = "3" report = "False">
+        <text>I don't know how I survived before Calm!</text>
+        <date>12-06-2020</date>
+        <time>16:30</time>
+    </tweet>
+    <tweet id = "4" report = "False">
+        <text>Calm is the best! </text>
+        <date>12-06-2020</date>
+        <time>16:30</time>
+    </tweet>
+    <tweet id = "5" report = "False">
+        <text>It's a whole new way of thinking!</text>
+        <date>15-06-2020</date>
+        <time>16:30</time>
+    </tweet>
+    <tweet id = "6" report = "False">
+        <text>I feel so safe after working with Calm!</text>
+        <date>25-06-2020</date>
+        <time>16:30</time>
+    </tweet>
+</tweets>

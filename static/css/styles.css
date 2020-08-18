@@ -1,0 +1,346 @@
+* {
+	box-sizing: border-box;
+	font-family: Helvetica,Times,serif;
+	color: #575757;
+}
+body{
+	background: white;
+	color: #575757;
+
+}
+#logo-img{
+	background: url('/static/media/icon.png') no-repeat;
+	width: 64px;
+  	height: 64px;
+  	margin: 0px 15px 5px 0;
+}
+.navbar-brand a:hover, .navbar-brand a:focus {
+  text-decoration: none;
+  }
+.navbar-header button.navbar-toggler {
+  clear: both;
+  margin-top: -30px;
+  margin-left:70px;
+}
+.navbar-brand h1 {
+	font-family: 'Pacifico', cursive;
+	font-size:2.6em;
+	color:#fff;
+	
+}
+.navbar-collapse{
+	margin-left:30px;
+
+}
+.navbar-collapse li{
+	margin-right:15px;
+	font-size:1.3em;
+}
+nav{
+	box-shadow:0px 8px 25px grey ;
+	background-color: #000;
+}
+
+/* END OF HEADER */
+
+
+#maincontent{
+	margin-top:5em;
+	font-size:1.2em;
+}
+hr{
+	background: linear-gradient(to right, #030bfc, #db03fc);
+  	height: 5px;
+	width:70%;
+	margin-top:20px;
+}
+#mainblock{
+	margin-top:30px;
+	line-height: 1.5;
+}
+/* END OF MAINCONTENT */
+
+footer{
+	background-color: #000;
+	font-size:1em;
+	padding:20px 10px 10px;
+}
+
+/* END OF MAIN PAGE */
+
+h2{
+	margin-bottom: 2em;
+}
+.table .thead-dark th {
+	background-color: #000;
+	color: #acacac;
+
+}
+.table{
+	margin-bottom: 4em;
+}
+td>a{ 
+   display: block;
+   color:#575757;
+}
+td>a:link { 
+   color:#575757;
+}
+td a:visited{
+	color:#0c006b;
+}
+td a:hover{
+	text-decoration: none;
+}
+/*END OF RESEARCH PAGE*/
+
+ul.a {
+  list-style-type: circle;
+}
+
+ul.b {
+  list-style-type: square;
+}
+
+ol.c {
+  list-style-type: upper-roman;
+}
+
+ol.d {
+  list-style-type: lower-alpha;
+}
+
+/*END OF LIST DEFINITIONS*/
+
+#music{
+	margin:auto;
+	margin-bottom: 3em;
+	width:80%;
+	height:70%;
+}
+.row audio{
+	margin-bottom: 2em;
+	margin-top: 1em;
+	margin-left: 3.0em;
+}
+/*End of Music PAGE*/
+
+
+#green_row>div,#backgrounds>div{
+	padding:0;
+}
+canvas{
+	width:100%;
+	height:5em;
+}
+#mygreen1{
+	background-color: green;
+	margin-bottom: 3em;
+}
+#mygreen2{
+	background-color: green;
+	margin-bottom: 3em;
+	opacity :0.9;
+}
+#mygreen3{
+	background-color: green;
+	margin-bottom: 3em;
+	opacity :0.8;
+}
+#mygreen4{
+	background-color: green;
+	margin-bottom: 3em;
+	opacity :0.7;
+}
+#mygreen5{
+	background-color: green;
+	margin-bottom: 3em;
+	opacity :0.65;
+}
+#mygreen6{
+	background-color: green;
+	margin-bottom: 3em;
+	opacity :0.6;
+}
+#mygreen7{
+	background-color: green;
+	margin-bottom: 3em;
+	opacity :0.55;
+}
+#mygreen8{
+	background-color: green;
+	margin-bottom: 3em;
+	opacity :0.45;
+}
+#mygreen9{
+	background-color: green;
+	margin-bottom: 3em;
+	opacity :0.35;
+}
+#mygreen10{
+	background-color: green;
+	margin-bottom: 3em;
+	opacity :0.3;
+}
+#mygreen11{
+	background-color: green;
+	margin-bottom: 3em;
+	opacity :0.2;
+}
+#mygreen12{
+	background-color: green;
+	margin-bottom: 3em;
+	opacity :0.1;
+}
+
+@-webkit-keyframes colorchange
+{
+     0%  {background-color: #166501;}
+    10%  {background-color: #23720F;}
+    20%  {background-color: #30801E;}
+    30%  {background-color: #3E8E2D;}
+    40%  {background-color: #4B9C3C;}
+    50%  {background-color: #59AA4B;}
+    60%  {background-color: #4B9C3C;}
+    70%  {background-color: #3E8E2D;}
+    80%  {background-color: #30801E;}
+    90%  {background-color: #23720F;}
+    100% {background-color: #166501;}
+}
+#backgrounds>div>div{
+	height:300px;
+	-webkit-animation: colorchange 30s infinite;
+    animation: colorchange 30s infinite;
+    background-position:
+    top 10px left 10px,
+    top 10px right 10px,
+    bottom 10px right 10px,
+    bottom 10px left 10px;
+  
+  background-size: 86px;
+  background-repeat: no-repeat;
+  
+  background-image:
+    url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/3/angles-top-left.svg),
+    url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/3/angles-top-right.svg),
+    url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/3/angles-bottom-right.svg),
+    url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/3/angles-bottom-left.svg);
+  margin-bottom: 4em;
+}
+
+@keyframes colorchange
+{
+
+     0%  {background-color: #166501;}
+    10%  {background-color: #23720F;}
+    20%  {background-color: #30801E;}
+    30%  {background-color: #3E8E2D;}
+    40%  {background-color: #4B9C3C;}
+    50%  {background-color: #59AA4B;}
+    60%  {background-color: #4B9C3C;}
+    70%  {background-color: #3E8E2D;}
+    80%  {background-color: #30801E;}
+    90%  {background-color: #23720F;}
+    100% {background-color: #166501;}
+}   
+
+
+/*END OF DRAW PAGE*/ 
+
+input[type=radio] {
+    width: 20px;
+    height: 20px;
+}
+input[type=checkbox] {
+    width: 17px;
+    height: 17px;
+}
+.form-check{
+	margin-bottom: 2px;
+}
+.form-group{
+	margin-bottom:2.5rem;
+}
+fieldset{
+	border-width: 2px;
+    border-style: solid;
+    border-color: threedface;
+    border-image: initial;
+    padding:2em;
+    margin-bottom: 40px;
+    border-radius: 8px;
+}
+
+/* END OF CONTACT US PAGE*/
+
+.row>video{
+	margin-bottom: 4em;
+}
+#sep{
+	margin-top: 2em
+}
+
+/*END OF ESSENTIALS PAGE*/
+
+object:hover{
+	-webkit-transform: scaleX(-1);
+  	transform: scaleX(-1);
+  	opacity: 1;
+}
+object{
+	box-shadow: 0px 10px 10px grey;
+	opacity:0.5;
+}
+#maps{
+	box-shadow: 0px 10px 10px grey;
+	margin-bottom: 2.5em;
+}
+.row>p{
+	margin-left:15px;
+}
+h3{
+	margin-top: 1em;
+}
+
+@media(max-width: 768px){
+	object{
+		margin-left: 7em;
+	}
+}
+/*END OF ABOUT US PAGE */
+
+#input_review{
+    margin-top: 0.5em;
+    height: 50px;
+    font-size: 20px;
+}
+#tweet{
+    margin-top: 2em;
+    width:7em;
+    height:2.7em;
+}
+#mycontent>div>p{
+    margin: 0px;
+    padding:0px;
+    font-size: 16px;
+}
+#mycontent>div>h3{
+    font-style: italic; 
+}
+#mycontent>div{
+    margin-bottom: 20px;
+}
+#hashes{
+    font-weight: bold;
+    font-size: 1.1em;
+}
+.small{
+    margin-top: 1em;
+    font-size: 0.7em;
+    font-style: italic;
+    
+}
+.small:hover{
+    cursor:pointer;
+    text-decoration: underline;
+}

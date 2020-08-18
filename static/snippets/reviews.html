@@ -1,0 +1,43 @@
+ <h1> Here is what our patrons are saying about us!</h1>
+      <div class="form-row">
+          <div class="form-group col-md-12">
+            <input id = "input_review" type="text" class="form-control" placeholder="Tell us what you think!" aria-label="Review" aria-describedby="button-addon2">
+            <button id = "tweet" onclick="fun.addxml()" class="btn btn-primary">Tweet</button>
+      
+          </div>
+          <hr> 
+        </div>
+        <div id = "hashes" class = "row justify-content-center">
+          <xml id = "hashes">
+            
+            <!ELEMENT hashtags (hash)>
+            <!ELEMENT hash (#PCDATA)>
+            
+
+          <hashtags>
+            <hash>#CalmYourMind</hash>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          </hashtags>
+          <hashtags>
+            <hash>#SelfCare</hash>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          </hashtags>
+          <hashtags>
+            <hash>#Therapy</hash>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          </hashtags>
+          <hashtags>
+            <hash>#Awareness</hash>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          </hashtags>
+        
+        </xml>
+        </div>
+        <hr>
+        <div id = "mycontent" class = "row">
+         
+        </div>
+        <div class = "row">
+           <div class = "col-md-6">
+            <a id = "link" href = "#" onclick = "fun.callsave()">Download</a>
+          </div>
+          <div class = "col-md-6">
+            <a id = "link2" target = "_blank" rel = "noopener noreferrer" onclick = "fun.viewXML()" href = "#">Show current XML</a>
+          </div>
+        </div>
