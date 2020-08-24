@@ -18,6 +18,45 @@
       var targetElem = document.querySelector(selector);
       targetElem.innerHTML = html;
     };
+    var form,email,emailError,flag;
+    function registercomp(){
+        form  = document.getElementsByTagName('form')[0];
+        //console.log("Hello!!!");
+
+        email = document.getElementById('inputEmail4');
+        emailError = document.querySelector('#inputEmail4 + span.error');
+        email.addEventListener('input', validate);
+        form.addEventListener('submit', submitbut);
+    };
+    function validate(event){
+        if (email.validity.valid) {
+        emailError.innerHTML = ''; 
+        emailError.className = 'error';
+        flag = 0
+        } else {
+            showError();
+        }
+    };
+
+    function submitbut(event) {
+          if(flag === -1){
+            alert("Please fill up the form correctly")
+            event.preventDefault();
+          }
+    };
+
+        function showError() {
+                flag= -1;
+              if(email.validity.valueMissing) {
+                emailError.innerHTML = 'You need to enter an e-mail address.';
+              } else if(email.validity.typeMismatch) {
+                emailError.innerHTML = 'Entered value needs to be an e-mail address.';
+              } else if(email.validity.tooShort) {
+                emailError.textContent = `Email should be at least ${ email.minLength } characters; you entered ${ email.value.length }.`;
+              }
+              emailError.className = 'error active';
+        };
+
 
     var insertProperty = function (string, propName, propValue) {
       var propToReplace = "{{" + propName + "}}";
@@ -62,6 +101,10 @@
             url,
             function(response){
                 document.querySelector("#maincontent").innerHTML = response;
+                if(urlkey==="contact"){
+                    //console.log("Contact")
+                    registercomp();
+                }
             },false,false);
         if(urlkey=="review"){
             refresh();
@@ -69,6 +112,7 @@
 
     };
     document.addEventListener('DOMContentLoaded',fun.show("home"),false,false);
+
         //console.log("Home loaded");
     //window.onload = showHome();
 
@@ -211,6 +255,12 @@
             insertHtml("#mycontent",toInsert);
         },
         false,false);
+
+
+        
+        //document.addEventListener('DOMContentLoaded',registercomp(),false,false);
+         
+        
         
         //console.log("Loaded xml");
         window.fun = fun;

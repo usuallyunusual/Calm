@@ -1,4 +1,4 @@
-<form>
+<form novalidate>
             <fieldset class = "form-group">
             <legend class = "text-center">Contact Us</legend>
               <div class="form-row">
@@ -74,7 +74,8 @@
             <div class="form-row">
                 <div class="form-group col-md-6">
                   <label for="inputEmail4">Email</label>
-                  <input type="email" class="form-control" id="inputEmail4" placeholder="Email">
+                  <input type="email" class="form-control" id="inputEmail4" placeholder="Email" required minlength = 8>
+                  <span class="error" aria-live="polite"></span>
                 </div>
                 <div class="form-group col-md-6">
                   <label for="inputcard4">Donate to us!</label>
