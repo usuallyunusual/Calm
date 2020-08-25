@@ -3,6 +3,7 @@ import mysql
 from mysql.connector import Error
 
 app = Flask('__name__',template_folder = "")
+app.config['SEND_FILE_MAX_AGE_DEFAULT'] = 0
 
 
 @app.route('/')

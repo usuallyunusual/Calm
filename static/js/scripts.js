@@ -18,44 +18,269 @@
       var targetElem = document.querySelector(selector);
       targetElem.innerHTML = html;
     };
-    var form,email,emailError,flag;
+    var form,email,emailError,fname,lname,fnameError,indate,lnameError,in_dateError;
+    var flag = [-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1];
+    var card,cardError,num,numError;
     function registercomp(){
         form  = document.getElementsByTagName('form')[0];
         //console.log("Hello!!!");
-
+        fname = document.querySelector("#inputname1");
+        fnameError = document.querySelector("#inputname1 + #fname");
+        fname.addEventListener('input',validate);
+        zip = document.querySelector("#inputZip");
+        zipError = document.querySelector("#inputZip + #zip");
+        zip.addEventListener('input',validate);
+        city = document.querySelector("#inputCity");
+        cityError = document.querySelector("#inputCity + #city");
+        city.addEventListener('input',validate);
+        num = document.querySelector("#inputnum");
+        numError = document.querySelector("#inputnum + #num");
+        num.addEventListener('input',validate);
+        card = document.querySelector("#inputcard4");
+        cardError = document.querySelector("#inputcard4 + #card");
+        card.addEventListener('input',validate);
+        indate = document.querySelector("#pickm");
+        in_dateError = document.querySelector("#pickm + #in_date");
+        indate.addEventListener('input',validate);
+        lname = document.querySelector("#inputname2");
+        lnameError = document.querySelector("#inputname2 + #lname");
+        lname.addEventListener('input',validate);
         email = document.getElementById('inputEmail4');
-        emailError = document.querySelector('#inputEmail4 + span.error');
+        emailError = document.querySelector('#inputEmail4 + #email');
         email.addEventListener('input', validate);
         form.addEventListener('submit', submitbut);
     };
-    function validate(event){
-        if (email.validity.valid) {
-        emailError.innerHTML = ''; 
-        emailError.className = 'error';
-        flag = 0
-        } else {
-            showError();
+    function validate(key){
+        //console.log(key);
+        if(key.srcElement.id==="inputEmail4"){
+            if (email.validity.valid) {
+            emailError.innerHTML = ''; 
+            emailError.className = 'error';
+            flag[0] = 0;
+            } else {
+                showError(key.srcElement.id);
+                //console.log("Showerror");
+            }
         }
+        if(key.srcElement.id==="inputname1"){
+            var regex = /^[A-Z][A-Za-z]*$/ ;
+            //console.log(fname.value);
+            if(regex.test(fname.value) ){
+                fnameError.innerHTML = '';
+                fnameError.className = 'error';
+                flag[1] = 0;
+            }
+            else{
+                showError(key.srcElement.id);
+            }
+        }
+        if(key.srcElement.id==="inputname2"){
+            var regex = /^[A-Z][A-Za-z]*$/ ;
+            //console.log(fname.value);
+            if(regex.test(lname.value) ){
+                lnameError.innerHTML = '';
+                lnameError.className = 'error';
+                flag[2] = 0;
+            }
+            else{
+                showError(key.srcElement.id);
+            }
+        }
+        if(key.srcElement.id==="pickm"){
+            var acdate = new Date(indate.value);
+            var curdate = new Date();
+            if(acdate>curdate){
+                console.log("Date");
+                flag[5] = 0;
+                in_dateError.innerHTML = "";
+                in_dateError.className = "error";
+            }
+            else{
+                showError(key.srcElement.id);
+            }
+            
+        }
+        if(key.srcElement.id==="inputcard4"){
+            var regex = /^[0-9]{4}\s[0-9]{4}\s[0-9]{4}\s[0-9]{4}$/ ;
+            //console.log(fname.value);
+            if(regex.test(card.value)){
+                cardError.innerHTML = '';
+                cardError.className = 'error';
+                flag[6] = 0;
+            }
+            else{
+                showError(key.srcElement.id);
+            }
+        }
+        if(key.srcElement.id==="inputnum"){
+            var regex = /^[7-9][0-9]+[1-9][0-9]*$/ ;
+            //console.log(fname.value);
+            if(regex.test(num.value) && num.validity.valid ){
+                numError.innerHTML = '';
+                numError.className = 'error';
+                flag[7] = 0;
+            }
+            else{
+                showError(key.srcElement.id);
+            }
+        }
+        if(key.srcElement.id==="inputCity"){
+            var regex = /[A-Z][a-z]+\s*[A-Za-z]*$/ ;
+            //console.log(fname.value);
+            if(regex.test(city.value) && city.validity.valid ){
+                cityError.innerHTML = '';
+                cityError.className = 'error';
+                flag[8] = 0;
+            }
+            else{
+                showError(key.srcElement.id);
+            }
+        }
+        if(key.srcElement.id==="inputZip"){
+            var regex = /^[1-9]{1}[0-9]{2}[0-9]{3}$/ ;
+            //console.log(fname.value);
+            if(regex.test(zip.value) && zip.validity.valid ){
+                zipError.innerHTML = '';
+                zipError.className = 'error';
+                flag[10] = 0;
+            }
+            else{
+                showError(key.srcElement.id);
+            }
+        }
+
     };
 
     function submitbut(event) {
-          if(flag === -1){
-            alert("Please fill up the form correctly")
-            event.preventDefault();
+        console.log("Button pressed");
+          for(i = 0;i<flag.length;i++){
+            if(flag[i]===-1){
+                if(i===3){
+                    alert("Select your gender");
+                }
+                else if(i==4){
+                    alert("Select your purpose");
+                }
+                else{
+                alert("Please fill up the form correctly",i);
+                }
+                event.preventDefault();
+                console.log(i);
+                break;
+            }
           }
     };
+    fun.radbut = function(ele){
+        if(ele.name==="mygroup"){
+            flag[4] = 0;
+        }
+        else{
+            flag[3] = 0;
+            console.log(ele.value);
+        }
+    };
 
-        function showError() {
-                flag= -1;
-              if(email.validity.valueMissing) {
-                emailError.innerHTML = 'You need to enter an e-mail address.';
-              } else if(email.validity.typeMismatch) {
-                emailError.innerHTML = 'Entered value needs to be an e-mail address.';
-              } else if(email.validity.tooShort) {
-                emailError.textContent = `Email should be at least ${ email.minLength } characters; you entered ${ email.value.length }.`;
-              }
-              emailError.className = 'error active';
+        function showError(key) {
+                
+                if(key === "inputEmail4"){
+                        flag[0] = -1;
+                  if(email.validity.valueMissing) {
+                    emailError.innerHTML = 'You need to enter an e-mail address.';
+                  } else if(email.validity.typeMismatch) {
+                    emailError.innerHTML = 'Entered value needs to be an e-mail address.';
+                  } else if(email.validity.tooShort) {
+                    emailError.textContent = `Email should be at least ${ email.minLength } characters; you entered ${ email.value.length }.`;
+                  }
+                  emailError.className = 'error active';
+                }
+                if(key === "inputname1"){
+                    flag[1] = -1;
+                    if(fname.value === ""){
+                        fnameError.innerHTML = "You need to enter name.";
+                    }
+                    else{
+                        fnameError.innerHTML = "Ensure first letter is capital and no number/spec characters exists.";
+                    }
+                    fnameError.className = "error active";
+                }
+                if(key === "inputname2"){
+                    flag[2] = -1;
+                    if(fname.value === ""){
+                        lnameError.innerHTML = "You need to enter name.";
+                    }
+                    else{
+                        lnameError.innerHTML = "Ensure first letter is capital and no number/spec characters exists.";
+                    }
+                    lnameError.className = "error active";
+                }
+                if(key === "pickm"){
+                    flag[5] = -1;
+                    in_dateError.innerHTML = "Date cannot be before now.";
+                    in_dateError.className = "error active";
+                }
+                if(key === "inputcard4"){
+                    flag[6] = -1;
+                    if(card.value === ""){
+                        cardError.innerHTML = "You need to enter card details.";
+                    }
+                    else if(card.validity.tooShort) {
+                    cardError.textContent = `Card number should be at least ${ card.minLength } characters; you entered ${ card.value.length }.`;
+                  }
+                    else{
+                        cardError.innerHTML = "Enter valid card details.";
+                    }
+                    cardError.className = "error active";
+                }
+                if(key === "inputnum"){
+                    flag[7] = -1;
+                    if(num.value === ""){
+                        numError.innerHTML = "You need to enter card details.";
+                    }
+                    else if(num.validity.tooShort) {
+                    numError.textContent = `Number should be at least ${ num.minLength } characters; you entered ${ num.value.length }.`;
+                    } else if(num.validity.tooLong) {
+                    numError.textContent = `Number should be at most ${ num.maxLength } characters; you entered ${ num.value.length }.`;
+                    }
+                    else{
+                        numError.innerHTML = "Enter valid card details.";
+                    }
+                    numError.className = "error active";
+                }
+                if(key === "inputCity"){
+                    flag[8] = -1;
+                    if(city.value === ""){
+                        cityError.innerHTML = "You need to enter city.";
+                    }
+                    else{
+                        cityError.innerHTML = "Enter valid city.";
+                    }
+                    cityError.className = "error active";
+                }
+                if(key === "inputZip"){
+                    flag[10] = -1;
+                    if(zip.value === "" || zip.value===null){
+                        zipError.innerHTML = "You need to enter ZipCode.";
+                    }
+                    else{
+                        zipError.innerHTML = "Enter valid Zip.";
+                    }
+                    zipError.className = "error active";
+                }
         };
+        fun.sel = function(){
+            var temp = document.querySelector("#inputState");
+            tempError = document.querySelector("#inputState + #state");
+            if(temp.value==="" || temp.value===null){
+                flag[9] = -1;
+                tempError.innerHTML = "Select valid State."
+                tempError.className = "error active"
+            }
+            else{
+                flag[9] = 0;
+                tempError.innerHTML = ""
+                tempError.className = "error"
+            }
+        }
 
 
     var insertProperty = function (string, propName, propValue) {
