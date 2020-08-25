@@ -152,7 +152,7 @@
     };
 
     function submitbut(event) {
-        console.log("Button pressed");
+        //console.log("Button pressed");
           for(i = 0;i<flag.length;i++){
             if(flag[i]===-1){
                 if(i===3){
@@ -162,13 +162,14 @@
                     alert("Select your purpose");
                 }
                 else{
-                alert("Please fill up the form correctly",i);
+                alert("Please fill up the form correctly");
                 }
                 event.preventDefault();
                 console.log(i);
-                break;
+                return;
             }
           }
+          console.log("Thank you for reaching out to us! We will reach out shortly");
     };
     fun.radbut = function(ele){
         if(ele.name==="mygroup"){
