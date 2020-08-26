@@ -169,7 +169,7 @@
                 return;
             }
           }
-          console.log("Thank you for reaching out to us! We will reach out shortly");
+          alert("Thank you for reaching out to us! We will reach out shortly");
     };
     fun.radbut = function(ele){
         if(ele.name==="mygroup"){
