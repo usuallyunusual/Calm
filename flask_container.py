@@ -1,6 +1,7 @@
 from flask import Flask, render_template,url_for,request
 import mysql
 from mysql.connector import Error
+import json
 
 app = Flask('__name__',template_folder = "")
 app.config['SEND_FILE_MAX_AGE_DEFAULT'] = 0
@@ -16,9 +17,9 @@ def getmydata():
     try:
         conn = mysql.connector.connect(host = "127.0.0.1",port = 3307,
             database = "calm_db",user = 'root',password = '')
-        cur = conn.cursor();
+        cur = conn.cursor()
         cur.execute("SELECT * FROM tweets")
-        res = cur.fetchone()[1];
+        res = cur.fetchone()[1]
         cur.close()
         conn.close()
         return res
@@ -32,7 +33,7 @@ def postmydata():
 
         conn = mysql.connector.connect(host = "127.0.0.1",port = 3307,
             database = "calm_db",user = 'root',password = '')
-        cur = conn.cursor();
+        cur = conn.cursor()
         cur.execute("UPDATE tweets SET tweet = %s WHERE id = %s",(data,1))
         print(cur.rowcount)
         conn.commit()
@@ -41,5 +42,25 @@ def postmydata():
         return "Success"
     except:
         return "Fail"
+
+@app.route('/putjson',methods = ['POST'])
+def postmyjson():
+    data = request.form['data']
+    data = json.loads(data)
+    try:
+
+        conn = mysql.connector.connect(host = "127.0.0.1",port = 3307,
+            database = "calm_db",user = 'root',password = '')
+        cur = conn.cursor()
+        cur.execute("UPDATE tweets SET tweet = %s WHERE id = %s",(data,1))
+        print(cur.rowcount)
+        conn.commit()
+        cur.close()
+        conn.close()
+        return "Success"
+    except:
+        return "Fail"
+        
+
 
 

@@ -10,9 +10,9 @@
     var essurl = "static/snippets/essential.html";
     var revurl = "static/snippets/reviews.html";
     var divurl  = "static/snippets/tweets.html"
-    urls = {"music":musurl,"home":homeurl,"research":resurl,"brain":brurl,"draw":drawurl,
+    var urls = {"music":musurl,"home":homeurl,"research":resurl,"brain":brurl,"draw":drawurl,
 "contact":conurl,"about":abturl,"essential":essurl,"review":revurl};
-    menu = {"music":"musicdraw","home":"home","research":"research","brain":"brain","draw":"musicdraw",
+    var menu = {"music":"musicdraw","home":"home","research":"research","brain":"brain","draw":"musicdraw",
 "contact":"contact","about":"dp2","essential":"dp2","review":"dp2"};
     var insertHtml = function (selector, html) {
       var targetElem = document.querySelector(selector);
@@ -48,7 +48,7 @@
         email = document.getElementById('inputEmail4');
         emailError = document.querySelector('#inputEmail4 + #email');
         email.addEventListener('input', validate);
-        form.addEventListener('submit', submitbut);
+        //form.addEventListener('submit', submitbut);
     };
     function validate(key){
         //console.log(key);
@@ -151,7 +151,7 @@
 
     };
 
-    function submitbut(event) {
+    fun.submitbut = function () {
         //console.log("Button pressed");
           for(i = 0;i<flag.length;i++){
             if(flag[i]===-1){
@@ -164,11 +164,36 @@
                 else{
                 alert("Please fill up the form correctly");
                 }
-                event.preventDefault();
+                //event.preventDefault();
                 console.log(i);
                 return;
             }
           }
+          var send_data = new Object();
+          send_data.fname = fname.value;
+          send_data.lname = lname.value;
+          send_data.gender = $('input[name=inlineRadioOptions]:checked').val()
+          send_data.reason = $('input[name=mygroup]:checked').val()
+          send_data.num_people = document.querySelector("#ControlSelect1").value;
+          send_data.date = indate.value;
+          send_data.email = email.value;
+          send_data.card_num = card.value;
+          send_data.contact = num.value;
+          send_data.city = city.value;
+          send_data.state = state.value;
+          send_data.zip = zip.value;
+          send_data.promo = document.querySelector("#promo").value;
+          
+          mydata = JSON.stringify(send_data);
+          console.log(send_data);
+
+          $.ajax({
+            type : 'POST',
+            url : "/putjson",
+            datatype: 'json',
+            data : {'data':mydata}
+          });
+          //event.preventDefault();
           alert("Thank you for reaching out to us! We will reach out shortly");
     };
     fun.radbut = function(ele){
@@ -177,7 +202,7 @@
         }
         else{
             flag[3] = 0;
-            console.log(ele.value);
+            //console.log(ele.value);
         }
     };
 
