@@ -47,19 +47,22 @@ def postmydata():
 def postmyjson():
     data = request.form['data']
     data = json.loads(data)
+    #print(data)
     try:
 
         conn = mysql.connector.connect(host = "127.0.0.1",port = 3307,
             database = "calm_db",user = 'root',password = '')
         cur = conn.cursor()
-        cur.execute("UPDATE tweets SET tweet = %s WHERE id = %s",(data,1))
+        cur.execute("INSERT INTO contact ( `fname`, `lname`, `gender`, `reason`, `num_people`, `date`, `email`, `card_num`, `contact`, `city`, `state`, `zip`) values (%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)",(data["fname"],data["lname"],data["gender"],
+        data["reason"],data["num_people"],data["date"],data["email"],data["card_num"],data["contact"],data["city"],data["state"],data["zip"]))
         print(cur.rowcount)
+        print("Should be done inserting")
         conn.commit()
         cur.close()
         conn.close()
         return "Success"
-    except:
-        return "Fail"
+    except Error as e:
+        return str(e)       
         
 
 

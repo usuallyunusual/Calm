@@ -104,9 +104,9 @@
                   <label for="inputState">State</label>
                   <select onchange = "fun.sel()" name = "temp" id="inputState" class="form-control" required>
                     <option value = "" disabled = "disabled" selected>Choose...</option >
-                    <option value = "1">Karnataka</option>
-                    <option value = "2">Tamil Nadu</option>
-                    <option value = "3">Maharashtra</option>
+                    <option value = "Karnataka">Karnataka</option>
+                    <option value = "Tamil Nadu">Tamil Nadu</option>
+                    <option value = "Maharashtra">Maharashtra</option>
                   </select>
                   <span id = "state" class="error" aria-live="polite"></span>
                 </div>
@@ -125,6 +125,6 @@
                 </div>
             </div>
             <div class ="row justify-content-center">
-              <button class="btn btn-primary col-2" onclick = "fun.submitbut()">Submit</button>
+              <button class="btn btn-primary col-2" onclick = "fun.submitbut(); fun.show('home');">Submit</button>
             </div>
           </div>

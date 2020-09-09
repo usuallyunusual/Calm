@@ -180,21 +180,24 @@
           send_data.card_num = card.value;
           send_data.contact = num.value;
           send_data.city = city.value;
-          send_data.state = state.value;
+          send_data.state = document.querySelector("#inputState").value;
           send_data.zip = zip.value;
           send_data.promo = document.querySelector("#promo").value;
           
           mydata = JSON.stringify(send_data);
-          console.log(send_data);
+          //console.log(send_data);
 
           $.ajax({
             type : 'POST',
             url : "/putjson",
             datatype: 'json',
             data : {'data':mydata}
+          }).done(function( msg ) {
+            alert( "Data Saved: " + msg );
           });
           //event.preventDefault();
           alert("Thank you for reaching out to us! We will reach out shortly");
+          //show("home");
     };
     fun.radbut = function(ele){
         if(ele.name==="mygroup"){
