@@ -1,4 +1,11 @@
 (function (window) {
+
+    $("#navbarToggle").blur(function (event) {
+        var screenWidth = window.innerWidth;
+        if (screenWidth < 768) {
+            $("#navbarSupportedContent").collapse('hide');
+        }
+    });
     fun = {}
     var homeurl = "static/snippets/home.html";
     var resurl = "static/snippets/research.html";
@@ -22,40 +29,55 @@
         var targetElem = document.querySelector(selector);
         targetElem.innerHTML = html;
     };
+    var availableTags = [
+        "CalmYourMind",
+        "SelfCare",
+        "Therapy",
+        "Awareness"
+    ];
+
     var form, email, emailError, fname, lname, fnameError, indate, lnameError, in_dateError;
     var flag = [-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1];
     var card, cardError, num, numError;
     function registercomp() {
-        form = document.getElementsByTagName('form')[0];
+        $(".widget button").button({
+            classes: {
+                "ui-button": "btn btn-primary"
+            }
+        });
+        //form = document.getElementsByTagName('form')[0];
         //console.log("Hello!!!");
-        fname = document.querySelector("#inputname1");
+        fname = $("#inputname1");
         fnameError = document.querySelector("#inputname1 + #fname");
-        fname.addEventListener('input', validate);
-        zip = document.querySelector("#inputZip");
-        zipError = document.querySelector("#inputZip + #zip");
-        zip.addEventListener('input', validate);
-        city = document.querySelector("#inputCity");
+        $("#inputname1").on('input', validate);
+        zip = $("#inputZip");
+        zipError = $("#inputZip + #zip");
+        $("#inputZip").on('input', validate);
+        city = $("#inputCity");
         cityError = document.querySelector("#inputCity + #city");
-        city.addEventListener('input', validate);
-        num = document.querySelector("#inputnum");
+        $("#inputCity").on('input', validate);
+        num = $("#inputnum");
         numError = document.querySelector("#inputnum + #num");
-        num.addEventListener('input', validate);
-        card = document.querySelector("#inputcard4");
+        $("#inputnum").on('input', validate);
+        card = $("#inputcard4");
         cardError = document.querySelector("#inputcard4 + #card");
-        card.addEventListener('input', validate);
-        indate = document.querySelector("#pickm");
+        $("#inputcard4").on('input', validate);
+        indate = $("#pickm");
         in_dateError = document.querySelector("#pickm + #in_date");
-        indate.addEventListener('input', validate);
-        lname = document.querySelector("#inputname2");
+        $("#pickm").on('input', validate);
+        lname = $("#inputname2");
         lnameError = document.querySelector("#inputname2 + #lname");
-        lname.addEventListener('input', validate);
-        email = document.getElementById('inputEmail4');
+        $("#inputname2").on('input', validate);
+        email = $('inputEmail4');
         emailError = document.querySelector('#inputEmail4 + #email');
-        email.addEventListener('input', validate);
+        $('inputEmail4').on('input', validate);
         //form.addEventListener('submit', submitbut);
     };
     function validate(key) {
         //console.log(key);
+        if (key.srcElement === undefined) {
+            key.srcElement = key.originalEvent.srcElement;
+        }
         if (key.srcElement.id === "inputEmail4") {
             if (email.validity.valid) {
                 emailError.innerHTML = '';
@@ -170,7 +192,7 @@
                 }
                 //event.preventDefault();
                 console.log(i);
-                return;
+                return false;
             }
         }
         var send_data = new Object();
@@ -201,6 +223,7 @@
         });
         //event.preventDefault();
         alert("Thank you for reaching out to us! We will reach out shortly");
+        return true;
         //show("home");
     };
     fun.radbut = function (ele) {
@@ -354,7 +377,7 @@
     fun.show = function (urlkey) {
         var url = urls[urlkey];
         var actmenu = menu[urlkey];
-        switchactive(actmenu)
+        switchactive(actmenu);
         $ajaxUtils.sendGetRequest(
             url,
             function (response) {
@@ -362,14 +385,47 @@
                 if (urlkey === "contact") {
                     //console.log("Contact")
                     registercomp();
+                    $('#wrapper').dialog({
+                        autoOpen: false,
+                        title: 'Basic Dialog'
+                    });
+                }
+                if (urlkey == "review") {
+                    refresh();
+                    $("#input_review").autocomplete({
+                        source: availableTags
+                    });
+                }
+                if (urlkey == "draw") {
+                    $("#green_row").draggable();
+                    $("#backgrounds>div>div").droppable({
+                        drop: function (event, ui) {
+                            $(this)
+                                .toggleClass("wclass")
+                                .toggleClass("backdrop");
+
+                        }
+                    });
+                    var t = "";
+                    for (i = 1; i < 13; i++) {
+                        t = t + "#mygreen" + String(i) + ",";
+                    }
+                    t = t.slice(0, -1);
+                    console.log(t);
+                    $(t).mouseover(function (event) {
+                        var col = $("#" + event.originalEvent.srcElement.id).css("backgroundColor");
+                        var op = $("#" + event.originalEvent.srcElement.id).css("opacity");
+                        $("#temp").css("backgroundColor", col);
+                        $("#temp").css("opacity", op);
+                        $("#temp").css("display", "block");
+                    });
+                    $("#temp").dblclick(function (event) {
+                        $("#temp").css("display", "none");
+                    })
                 }
             }, false, false);
-        if (urlkey == "review") {
-            refresh();
-        }
-
     };
-    document.addEventListener('DOMContentLoaded', fun.show("home"), false, false);
+    $(document).ready(fun.show("home"));
 
     //console.log("Home loaded");
     //window.onload = showHome();
@@ -511,6 +567,7 @@
                 }
                 //console.log(toInsert);
                 insertHtml("#mycontent", toInsert);
+                $("#mycontent").selectable();
             },
             false, false);
 

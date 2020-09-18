@@ -72,7 +72,7 @@
     <div class="form-row">
       <div class="form-group col-md-12">
         <label for="date">When do you want to meet us?</label>
-        <input type="date" class="" id="pickm" name="pick">
+        <input type="date" id="pickm">
         <span id="in_date" class="error" aria-live="polite"></span>
       </div>
     </div>
@@ -132,7 +132,10 @@
         </label>
       </div>
     </div>
-    <div class="row justify-content-center">
-      <button class="btn btn-primary col-2" onclick="fun.submitbut(); fun.show('home');">Submit</button>
+    <div class="row justify-content-center widget">
+      <button id="conbutton" type="button" onclick="return fun.submitbut(); fun.show('home');">Submit</button>
     </div>
+</div>
+<div id="wrapper">
+  <p>Some txt goes here</p>
 </div>

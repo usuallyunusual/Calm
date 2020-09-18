@@ -123,6 +123,11 @@ ol.d {
 	margin-top: 1em;
 	margin-left: 3.0em;
 }
+.ui-resizable-helper{ 
+	border: 75px solid #EFEFEF;
+	 margin: -75px; 
+}
+
 /*End of Music PAGE*/
 
 
@@ -207,7 +212,7 @@ canvas{
     90%  {background-color: #23720F;}
     100% {background-color: #166501;}
 }
-#backgrounds>div>div{
+.wclass{
 	height:300px;
 	-webkit-animation: colorchange 30s infinite;
     animation: colorchange 30s infinite;
@@ -226,6 +231,11 @@ canvas{
     url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/3/angles-bottom-right.svg),
     url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/3/angles-bottom-left.svg);
   margin-bottom: 4em;
+}
+.backdrop{
+	background-color: #000;
+	height:300px;
+	background-size: 86px;
 }
 
 @keyframes colorchange
@@ -366,4 +376,11 @@ h3{
 .small:hover{
     cursor:pointer;
     text-decoration: underline;
+}
+#mycontent .ui-selecting{ 
+	background: #FECA40; 
+}
+#mycontent .ui-selected{ 
+	background: #F39814; 
+	color: white; 
 }
