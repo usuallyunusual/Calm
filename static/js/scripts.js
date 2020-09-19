@@ -378,53 +378,55 @@
         var url = urls[urlkey];
         var actmenu = menu[urlkey];
         switchactive(actmenu);
-        $ajaxUtils.sendGetRequest(
-            url,
-            function (response) {
-                document.querySelector("#maincontent").innerHTML = response;
-                if (urlkey === "contact") {
-                    //console.log("Contact")
-                    registercomp();
-                    $('#wrapper').dialog({
-                        autoOpen: false,
-                        title: 'Basic Dialog'
-                    });
-                }
-                if (urlkey == "review") {
-                    refresh();
-                    $("#input_review").autocomplete({
-                        source: availableTags
-                    });
-                }
-                if (urlkey == "draw") {
-                    $("#green_row").draggable();
-                    $("#backgrounds>div>div").droppable({
-                        drop: function (event, ui) {
-                            $(this)
-                                .toggleClass("wclass")
-                                .toggleClass("backdrop");
-
-                        }
-                    });
-                    var t = "";
-                    for (i = 1; i < 13; i++) {
-                        t = t + "#mygreen" + String(i) + ",";
+        $("#maincontent").fadeOut(800, function () {
+            $ajaxUtils.sendGetRequest(
+                url,
+                function (response) {
+                    $("#maincontent").html(response).fadeIn(800);
+                    if (urlkey === "contact") {
+                        //console.log("Contact")
+                        registercomp();
+                        $('#wrapper').dialog({
+                            autoOpen: false,
+                            title: 'Basic Dialog'
+                        });
                     }
-                    t = t.slice(0, -1);
-                    console.log(t);
-                    $(t).mouseover(function (event) {
-                        var col = $("#" + event.originalEvent.srcElement.id).css("backgroundColor");
-                        var op = $("#" + event.originalEvent.srcElement.id).css("opacity");
-                        $("#temp").css("backgroundColor", col);
-                        $("#temp").css("opacity", op);
-                        $("#temp").css("display", "block");
-                    });
-                    $("#temp").dblclick(function (event) {
-                        $("#temp").css("display", "none");
-                    })
-                }
-            }, false, false);
-    };
+                    if (urlkey == "review") {
+                        refresh();
+                        $("#input_review").autocomplete({
+                            source: availableTags
+                        });
+                    }
+                    if (urlkey == "draw") {
+                        $("#green_row").draggable();
+                        $("#backgrounds>div>div").droppable({
+                            drop: function (event, ui) {
+                                $(this)
+                                    .toggleClass("wclass")
+                                    .toggleClass("backdrop");
+
+                            }
+                        });
+                        var t = "";
+                        for (i = 1; i < 13; i++) {
+                            t = t + "#mygreen" + String(i) + ",";
+                        }
+                        t = t.slice(0, -1);
+                        console.log(t);
+                        $(t).mouseover(function (event) {
+                            var col = $("#" + event.originalEvent.srcElement.id).css("backgroundColor");
+                            var op = $("#" + event.originalEvent.srcElement.id).css("opacity");
+                            $("#temp").css("backgroundColor", col);
+                            $("#temp").css("opacity", op);
+                            $("#temp").show();
+                        });
+                        $("#temp").dblclick(function (event) {
+                            $("#temp").hide();
+                        })
+                    }
+                }, false, false);
+        });
+    }
     $(document).ready(fun.show("home"));
 
     //console.log("Home loaded");
@@ -481,6 +483,7 @@
     };
 
     fun.addxml = function () {
+        $("#maincontent").slideUp(500);
         var mydate = new Date();
         var date = mydate.getDate() + "-" + (mydate.getMonth() + 1) + "-" + mydate.getFullYear();
         //console.log(date);
@@ -542,11 +545,28 @@
         //console.log(text);
 
     }
+    // run the currently selected effect
+    function runEffect(key) {
+        // Run the effect
+        //console.log(key);
+        var y = $(key);
+        for (i = 0; i < y.length; i++) {
+            $(y[i]).fadeIn(15000);
+        }
+        function callback(event) {
+            setTimeout(function () {
+                $(y[i]).removeAttr("style").hide().fadeIn();
+            }, 1000);
+        };
+        //$(key).effect("Fade", {}, 500, callback);
+    };
+
 
     function setDivs() {
         //myxml = window.xml;
         toInsert = "";
         var temp, date, time, text;
+        var t = "";
         $ajaxUtils.sendGetRequest(
             divurl,
             function (snippet) {
@@ -562,12 +582,19 @@
                         temp = insertProperty(temp, "funct", "fun.report('" + (i) + "')");
                         temp = insertProperty(temp, "date", date);
                         temp = insertProperty(temp, "time", time);
+                        temp = insertProperty(temp, "name", "box" + String(i));
                         toInsert = toInsert + temp;
+                        t = t + "#box" + String(i) + ",";
                     }
                 }
                 //console.log(toInsert);
                 insertHtml("#mycontent", toInsert);
+                $("#maincontent").slideDown(1500);
+                $("#mycontent").hide().fadeIn(2500);
                 $("#mycontent").selectable();
+                //t = t.slice(0, -1);
+                //runEffect(t);
+                //return false;
             },
             false, false);
 

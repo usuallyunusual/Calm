@@ -220,7 +220,8 @@ canvas{
     top 10px left 10px,
     top 10px right 10px,
     bottom 10px right 10px,
-    bottom 10px left 10px;
+	bottom 10px left 10px;
+	margin-bottom: 4em;
   
   background-size: 86px;
   background-repeat: no-repeat;
@@ -230,12 +231,12 @@ canvas{
     url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/3/angles-top-right.svg),
     url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/3/angles-bottom-right.svg),
     url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/3/angles-bottom-left.svg);
-  margin-bottom: 4em;
+  
 }
 .backdrop{
-	background-color: #000;
-	height:300px;
+	height:450px;
 	background-size: 86px;
+	margin-bottom: 4em;
 }
 
 @keyframes colorchange
