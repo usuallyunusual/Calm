@@ -47,30 +47,31 @@
         });
         //form = document.getElementsByTagName('form')[0];
         //console.log("Hello!!!");
-        fname = $("#inputname1");
+        fname = document.querySelector("#inputname1");
         fnameError = document.querySelector("#inputname1 + #fname");
         $("#inputname1").on('input', validate);
-        zip = $("#inputZip");
+        zip = document.querySelector("#inputZip");
         zipError = $("#inputZip + #zip");
         $("#inputZip").on('input', validate);
-        city = $("#inputCity");
+        city = document.querySelector("#inputCity");
         cityError = document.querySelector("#inputCity + #city");
         $("#inputCity").on('input', validate);
-        num = $("#inputnum");
+        num = document.querySelector("#inputnum");
         numError = document.querySelector("#inputnum + #num");
         $("#inputnum").on('input', validate);
-        card = $("#inputcard4");
+        card = document.querySelector("#inputcard4");
         cardError = document.querySelector("#inputcard4 + #card");
         $("#inputcard4").on('input', validate);
-        indate = $("#pickm");
+        indate = document.querySelector("#pickm");
         in_dateError = document.querySelector("#pickm + #in_date");
         $("#pickm").on('input', validate);
-        lname = $("#inputname2");
+        lname = document.querySelector("#inputname2");
         lnameError = document.querySelector("#inputname2 + #lname");
         $("#inputname2").on('input', validate);
-        email = $('inputEmail4');
+        email = document.querySelector('#inputEmail4');
+        //console.log(email);
         emailError = document.querySelector('#inputEmail4 + #email');
-        $('inputEmail4').on('input', validate);
+        $('#inputEmail4').on('input', validate);
         //form.addEventListener('submit', submitbut);
     };
     function validate(key) {
@@ -78,8 +79,11 @@
         if (key.srcElement === undefined) {
             key.srcElement = key.originalEvent.srcElement;
         }
+        //console.log(key);
         if (key.srcElement.id === "inputEmail4") {
+            //console.log("Email");
             if (email.validity.valid) {
+                //console.log("Email correct");
                 emailError.innerHTML = '';
                 emailError.className = 'error';
                 flag[0] = 0;
@@ -198,8 +202,8 @@
         var send_data = new Object();
         send_data.fname = fname.value;
         send_data.lname = lname.value;
-        send_data.gender = $('input[name=inlineRadioOptions]:checked').val()
-        send_data.reason = $('input[name=mygroup]:checked').val()
+        send_data.gender = $('input[name=Gender]:checked').val()
+        send_data.reason = $('input[name=Purpose]:checked').val()
         send_data.num_people = document.querySelector("#ControlSelect1").value;
         send_data.date = indate.value;
         send_data.email = email.value;
@@ -221,13 +225,23 @@
         }).done(function (msg) {
             alert("Data Saved: " + msg);
         });
+
         //event.preventDefault();
-        alert("Thank you for reaching out to us! We will reach out shortly");
+        try {
+            var disp = JSON.stringify($("#myform").serializeArray())
+            alert(disp);
+            //console.log($("#myform").serializeArray());
+            alert("Thank you for reaching out to us! We will reach out shortly");
+        }
+        catch (err) {
+            console.log(err);
+            console.log($("#myform"));
+        }
         return true;
         //show("home");
     };
     fun.radbut = function (ele) {
-        if (ele.name === "mygroup") {
+        if (ele.name === "Purpose") {
             flag[4] = 0;
         }
         else {

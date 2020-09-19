@@ -8,7 +8,7 @@ app.config["SEND_FILE_MAX_AGE_DEFAULT"] = 0
 
 
 @app.route("/")
-@app.route("/index.html")
+@app.route("/index.html", methods=["GET", "POST"])
 def index():
     return render_template("index.html")
 

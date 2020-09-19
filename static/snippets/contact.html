@@ -1,15 +1,15 @@
-<div>
+<form id="myform" novalidate action="/index.html" onsubmit="return fun.submitbut();" method="post">
   <fieldset class="form-group">
     <legend class="text-center">Contact Us</legend>
     <div class="form-row">
       <div class="form-group col-md-6">
         <label for="inputname1">Fist Name</label>
-        <input type="text" class="form-control" id="inputname1" placeholder="First name" required>
+        <input type="text" class="form-control" name="First name" id="inputname1" placeholder="First name" required>
         <span id="fname" class="error" aria-live="polite"></span>
       </div>
       <div class="form-group col-md-6">
         <label for="inputname2">Last Name</label>
-        <input type="text" class="form-control" id="inputname2" placeholder="Last Name" required>
+        <input type="text" class="form-control" name="Last name" id="inputname2" placeholder="Last Name" required>
         <span id="lname" class="error" aria-live="polite"></span>
       </div>
     </div>
@@ -19,17 +19,17 @@
       </div>
       <div class="form-group col-md-6">
         <div class="form-check form-check-inline">
-          <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="Male"
+          <input class="form-check-input" type="radio" name="Gender" id="inlineRadio1" value="Male"
             onclick="fun.radbut(this)">
           <label class="form-check-label" for="inlineRadio1">Male</label>
         </div>
         <div class="form-check form-check-inline">
-          <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="Female"
-            required onclick="fun.radbut(this)">
+          <input class="form-check-input" type="radio" name="Gender" id="inlineRadio2" value="Female" required
+            onclick="fun.radbut(this)">
           <label class="form-check-label" for="inlineRadio2">Female</label>
         </div>
         <div class="form-check form-check-inline">
-          <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio3" value="Other"
+          <input class="form-check-input" type="radio" name="Gender" id="inlineRadio3" value="Other"
             onclick="fun.radbut(this)">
           <label class="form-check-label" for="inlineRadio3">Other</label>
         </div>
@@ -41,18 +41,18 @@
       </div>
       <div class="form-group col-md-12">
         <div class="form-check">
-          <input class="form-check-input" type="radio" name="mygroup" id="inlineCheckbox1" value="Yourself"
+          <input class="form-check-input" type="radio" name="Purpose" id="inlineCheckbox1" value="Yourself"
             onclick="fun.radbut(this)">
           <label class="form-check-label" for="inlineCheckbox1">Learn Meditation for myself</label>
         </div>
         <div class="form-check">
-          <input class="form-check-input" type="radio" name="mygroup" id="inlineCheckbox2" value="Organization"
+          <input class="form-check-input" type="radio" name="Purpose" id="inlineCheckbox2" value="Organization"
             onclick="fun.radbut(this)">
           <label class="form-check-label" for="inlineCheckbox2">Help my team or Organization towards better mental
             health</label>
         </div>
         <div class="form-check">
-          <input class="form-check-input" type="radio" name="mygroup" id="inlineCheckbox3" value="Undisclosed"
+          <input class="form-check-input" type="radio" name="Purpose" id="inlineCheckbox3" value="Undisclosed"
             onclick="fun.radbut(this)">
           <label class="form-check-label" for="inlineCheckbox3">Other /I would not like to say</label>
         </div>
@@ -60,7 +60,7 @@
     </div>
     <div class="form-group">
       <label for="ControlSelect1">How many people are coming ?</label>
-      <select class="form-control" id="ControlSelect1">
+      <select class="form-control" id="ControlSelect1" name="People">
         <option selected>1</option>
         <option>2</option>
         <option>3</option>
@@ -72,7 +72,7 @@
     <div class="form-row">
       <div class="form-group col-md-12">
         <label for="date">When do you want to meet us?</label>
-        <input type="date" id="pickm">
+        <input type="date" id="pickm" name="Date">
         <span id="in_date" class="error" aria-live="polite"></span>
       </div>
     </div>
@@ -84,12 +84,13 @@
     <div class="form-row">
       <div class="form-group col-md-6">
         <label for="inputEmail4">Email</label>
-        <input type="email" class="form-control" id="inputEmail4" placeholder="Email" required minlength=8>
+        <input type="email" class="form-control" id="inputEmail4" name="Email" placeholder="Email" required minlength=8>
         <span id="email" class="error" aria-live="polite"></span>
       </div>
       <div class="form-group col-md-6">
         <label for="inputcard4">Donate to us!</label>
-        <input type="password" class="form-control" id="inputcard4" placeholder="Card Number" required minlength="19">
+        <input type="password" class="form-control" name="Card Number" id="inputcard4" placeholder="Card Number"
+          required minlength="19">
         <span id="card" class="error" aria-live="polite"></span>
       </div>
     </div>
@@ -97,20 +98,20 @@
     <div class="form-row">
       <div class="form-group col-md-6">
         <label for="inputnum">Contact number:</label>
-        <input type="tel" class="form-control" id="inputnum" placeholder="Contact Number" maxlength="10" minlength="10"
-          required>
+        <input type="tel" class="form-control" name="Contact" id="inputnum" placeholder="Contact Number" maxlength="10"
+          minlength="10" required>
         <span id="num" class="error" aria-live="polite"></span>
       </div>
     </div>
     <div class="form-row">
       <div class="form-group col-md-6">
         <label for="inputCity">City</label>
-        <input type="text" class="form-control" id="inputCity" required>
+        <input type="text" name="City" class="form-control" id="inputCity" required>
         <span id="city" class="error" aria-live="polite"></span>
       </div>
       <div class="form-group col-md-4">
         <label for="inputState">State</label>
-        <select onchange="fun.sel()" name="temp" id="inputState" class="form-control" required>
+        <select onchange="fun.sel()" name="State" id="inputState" class="form-control" required>
           <option value="" disabled="disabled" selected>Choose...</option>
           <option value="Karnataka">Karnataka</option>
           <option value="Tamil Nadu">Tamil Nadu</option>
@@ -120,7 +121,7 @@
       </div>
       <div class="form-group col-md-2">
         <label for="inputZip">Zip</label>
-        <input type="text" class="form-control" id="inputZip" required>
+        <input type="text" name="Zip" class="form-control" id="inputZip" required>
         <span id="zip" class="error" aria-live="polite"></span>
       </div>
     </div>
@@ -133,9 +134,7 @@
       </div>
     </div>
     <div class="row justify-content-center widget">
-      <button id="conbutton" type="button" onclick="return fun.submitbut(); fun.show('home');">Submit</button>
+      <button id="conbutton" type="submit">Submit</button>
     </div>
-</div>
-<div id="wrapper">
-  <p>Some txt goes here</p>
-</div>
+  </fieldset>
+</form>
