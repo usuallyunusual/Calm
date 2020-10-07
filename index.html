@@ -12,6 +12,8 @@
 	<script src="https://kit.fontawesome.com/ff6a127a8a.js" crossorigin="anonymous"></script>
 
 
+
+
 </head>
 
 
@@ -68,6 +70,10 @@
 							<a class="dropdown-item" onclick="fun.show('essential')" href="#">Essential Watches</a>
 							<a class="dropdown-item" onclick="fun.show('about')" href="#">About us</a>
 							<a class="dropdown-item" onclick="fun.show('review')" href="#">Reviews</a>
+							<a class="dropdown-item" href="{{url_for('static',filename = 'snippets/tips.html')}}">Crowd
+								Source
+								opinions</a>
+
 					</li>
 				</ul>
 			</div><!-- Close navbar collpase -->
@@ -127,7 +133,12 @@
 	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"
 		integrity="sha256-T0Vest3yCU7pafRw9r+settMBX6JkKN06dqBnpQ8d30=" crossorigin="anonymous"></script>
 	<script src="{{ url_for('static',filename = 'js/ajax-utils.js')}}"></script>
+	<script src="https://kit.fontawesome.com/ff6a127a8a.js" crossorigin="anonymous"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.0/angular.min.js"></script>
 	<script src="{{ url_for('static',filename = 'js/scripts.js')}}"></script>
+
+
+
 
 </body>
 

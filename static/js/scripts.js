@@ -17,13 +17,14 @@
     var essurl = "static/snippets/essential.html";
     var revurl = "static/snippets/reviews.html";
     var divurl = "static/snippets/tweets.html"
+    var tipsurl = "static/snippets/tips.html";
     var urls = {
         "music": musurl, "home": homeurl, "research": resurl, "brain": brurl, "draw": drawurl,
-        "contact": conurl, "about": abturl, "essential": essurl, "review": revurl
+        "contact": conurl, "about": abturl, "essential": essurl, "review": revurl, "tips": tipsurl
     };
     var menu = {
         "music": "musicdraw", "home": "home", "research": "research", "brain": "brain", "draw": "musicdraw",
-        "contact": "contact", "about": "dp2", "essential": "dp2", "review": "dp2"
+        "contact": "contact", "about": "dp2", "essential": "dp2", "review": "dp2", "tips": "dp2"
     };
     var insertHtml = function (selector, html) {
         var targetElem = document.querySelector(selector);
@@ -392,54 +393,52 @@
         var url = urls[urlkey];
         var actmenu = menu[urlkey];
         switchactive(actmenu);
-        $("#maincontent").fadeOut(800, function () {
-            $ajaxUtils.sendGetRequest(
-                url,
-                function (response) {
-                    $("#maincontent").html(response).fadeIn(800);
-                    if (urlkey === "contact") {
-                        //console.log("Contact")
-                        registercomp();
-                        $('#wrapper').dialog({
-                            autoOpen: false,
-                            title: 'Basic Dialog'
-                        });
-                    }
-                    if (urlkey == "review") {
-                        refresh();
-                        $("#input_review").autocomplete({
-                            source: availableTags
-                        });
-                    }
-                    if (urlkey == "draw") {
-                        $("#green_row").draggable();
-                        $("#backgrounds>div>div").droppable({
-                            drop: function (event, ui) {
-                                $(this)
-                                    .toggleClass("wclass")
-                                    .toggleClass("backdrop");
+        $ajaxUtils.sendGetRequest(
+            url,
+            function (response) {
+                $("#maincontent").html(response);
+                if (urlkey === "contact") {
+                    //console.log("Contact")
+                    registercomp();
+                    $('#wrapper').dialog({
+                        autoOpen: false,
+                        title: 'Basic Dialog'
+                    });
+                }
+                if (urlkey == "review") {
+                    refresh();
+                    $("#input_review").autocomplete({
+                        source: availableTags
+                    });
+                }
+                if (urlkey == "draw") {
+                    $("#green_row").draggable();
+                    $("#backgrounds>div>div").droppable({
+                        drop: function (event, ui) {
+                            $(this)
+                                .toggleClass("wclass")
+                                .toggleClass("backdrop");
 
-                            }
-                        });
-                        var t = "";
-                        for (i = 1; i < 13; i++) {
-                            t = t + "#mygreen" + String(i) + ",";
                         }
-                        t = t.slice(0, -1);
-                        console.log(t);
-                        $(t).mouseover(function (event) {
-                            var col = $("#" + event.originalEvent.srcElement.id).css("backgroundColor");
-                            var op = $("#" + event.originalEvent.srcElement.id).css("opacity");
-                            $("#temp").css("backgroundColor", col);
-                            $("#temp").css("opacity", op);
-                            $("#temp").show();
-                        });
-                        $("#temp").dblclick(function (event) {
-                            $("#temp").hide();
-                        })
+                    });
+                    var t = "";
+                    for (i = 1; i < 13; i++) {
+                        t = t + "#mygreen" + String(i) + ",";
                     }
-                }, false, false);
-        });
+                    t = t.slice(0, -1);
+                    console.log(t);
+                    $(t).mouseover(function (event) {
+                        var col = $("#" + event.originalEvent.srcElement.id).css("backgroundColor");
+                        var op = $("#" + event.originalEvent.srcElement.id).css("opacity");
+                        $("#temp").css("backgroundColor", col);
+                        $("#temp").css("opacity", op);
+                        $("#temp").show();
+                    });
+                    $("#temp").dblclick(function (event) {
+                        $("#temp").hide();
+                    })
+                }
+            }, false, false);
     }
     $(document).ready(fun.show("home"));
 
